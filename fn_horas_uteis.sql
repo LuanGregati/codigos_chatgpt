@@ -1,6 +1,4 @@
-DELIMITER $$
-CREATE FUNCTION `fn_horas_uteis`(param_id_calendario INT, param_dt_ini DATETIME, param_dt_fim DATETIME) RETURNS time
-    DETERMINISTIC
+CREATE FUNCTION `fn_horas_uteis`(param_id_calendario INT, param_dt_ini DATETIME, param_dt_fim DATETIME) RETURNS TIME
 BEGIN
 
     DECLARE var_i INT DEFAULT 0;
@@ -310,12 +308,9 @@ BEGIN
       SET var_i = var_i + 1;
   
     END WHILE;
-  
       IF (var_total_horas IS NULL OR SEC_TO_TIME(var_total_horas) < 0) THEN
           RETURN TIME(0);
       ELSE
           RETURN var_total_horas;
       END IF;
-  
-  END$$
-DELIMITER ;
+  END;
